@@ -58,7 +58,7 @@ def main():
             tesla.timeout = args.timeout
         if args.refresh:
             tesla.refresh_token(refresh_token=args.refresh)
-        selected = prod = tesla.vehicle_list() + tesla.battery_list()
+        selected = prod = tesla.vehicle_list() + tesla.battery_list() + tesla.solar_list()
         if args.filter:
             selected = [p for p in prod for v in p.values() if v == args.filter]
         logging.info('%d product(s), %d selected', len(prod), len(selected))
@@ -88,8 +88,13 @@ def main():
                     print(product.get_charge_history())
             elif isinstance(product, Battery) and args.battery:
                 print(product.get_battery_data())
-            elif isinstance(product, SolarPanel) and args.site:
-                print(product.get_site_data())
+            elif isinstance(product, SolarPanel):
+                if args.site:
+                    print(product.get_site_data())
+                if args.site_config:
+                    print(product.get_site_config())
+                if args.site_summary:
+                    print(product.get_site_summary())
             if args.api or args.command:
                 data = {}
                 for key, value in args.keyvalue or []:
@@ -153,6 +158,10 @@ if __name__ == "__main__":
                         help='get mobile enabled state')
     parser.add_argument('-s', '--site', action='store_true',
                         help='get current site generation data')
+    parser.add_argument('-sc', '--site_config', action='store_true',
+                        help='get site config data')
+    parser.add_argument('-ss', '--site_summary', action='store_true',
+                        help='get site summary data')
     parser.add_argument('-d', '--debug', action='store_true',
                         help='set logging level to debug')
     parser.add_argument('-r', '--stream', action='store_true',
