@@ -114,6 +114,8 @@ The `SolarPanel` class extends `Product` and stores solar panel data returned by
 | Call | Description |
 | --- | --- |
 | `get_site_data()` | Retrieve current site generation data |
+| `get_site_config()` | Retrieve site config data |
+| `get_site_summary()` | Retrieve site summary data |
 
 ## Usage
 
@@ -423,7 +425,7 @@ The source repository contains three demo applications that *optionally* use [py
 ```
 usage: cli.py [-h] -e EMAIL [-f FILTER] [-a API [KEYVALUE ...]] [-k KEYVALUE]
               [-c COMMAND] [-t TIMEOUT] [-p PROXY] [-R REFRESH] [-U URL] [-l]
-              [-o] [-v] [-w] [-g] [-b] [-n] [-m] [-s] [-d] [-r] [-S] [-H] [-V]
+              [-o] [-v] [-w] [-g] [-b] [-n] [-m] [-s] [-sc] [-ss] [-d] [-r] [-S] [-H] [-V]
               [-L] [-u] [--chrome] [--opera] [--edge]
 
 Tesla Owner API CLI
@@ -449,6 +451,8 @@ optional arguments:
   -n, --nearby          list nearby charging sites
   -m, --mobile          get mobile enabled state
   -s, --site            get current site generation data
+  -sc, --site_config    get site config data
+  -ss, --site_summary   get site summary data
   -d, --debug           set logging level to debug
   -r, --stream          receive streaming vehicle data on-change
   -S, --service         get service self scheduling eligibility
