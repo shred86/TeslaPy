@@ -36,11 +36,9 @@ def custom_auth(url):
         webview.start()
         return result[0]
     # Use selenium to control specified web browser
-    options = [webdriver.chrome, webdriver.opera,
-               webdriver.edge][args.web].options.Options()
+    options = [webdriver.chrome, webdriver.edge][args.web].options.Options()
     options.add_argument('--disable-blink-features=AutomationControlled')
-    with [webdriver.Chrome, webdriver.Opera,
-          webdriver.Edge][args.web](options=options) as browser:
+    with [webdriver.Chrome, webdriver.Edge][args.web](options=options) as browser:
         logging.info('Selenium opened %s', browser.capabilities['browserName'])
         browser.get(url)
         WebDriverWait(browser, 300).until(EC.url_contains('void/callback'))
@@ -158,9 +156,9 @@ if __name__ == "__main__":
                         help='get mobile enabled state')
     parser.add_argument('-s', '--site', action='store_true',
                         help='get current site generation data')
-    parser.add_argument('-sc', '--site_config', action='store_true',
+    parser.add_argument('--site_config', action='store_true',
                         help='get site config data')
-    parser.add_argument('-ss', '--site_summary', action='store_true',
+    parser.add_argument('--site_summary', action='store_true',
                         help='get site summary data')
     parser.add_argument('-d', '--debug', action='store_true',
                         help='set logging level to debug')

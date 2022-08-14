@@ -451,8 +451,8 @@ optional arguments:
   -n, --nearby          list nearby charging sites
   -m, --mobile          get mobile enabled state
   -s, --site            get current site generation data
-  -sc, --site_config    get site config data
-  -ss, --site_summary   get site summary data
+  --site_config         get site config data
+  --site_summary        get site summary data
   -d, --debug           set logging level to debug
   -r, --stream          receive streaming vehicle data on-change
   -S, --service         get service self scheduling eligibility
