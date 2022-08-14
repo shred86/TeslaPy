@@ -425,7 +425,7 @@ The source repository contains three demo applications that *optionally* use [py
 ```
 usage: cli.py [-h] -e EMAIL [-f FILTER] [-a API [KEYVALUE ...]] [-k KEYVALUE]
               [-c COMMAND] [-t TIMEOUT] [-p PROXY] [-R REFRESH] [-U URL] [-l]
-              [-o] [-v] [-w] [-g] [-b] [-n] [-m] [-s] [-sc] [-ss] [-d] [-r] [-S] [-H] [-V]
+              [-o] [-v] [-w] [-g] [-b] [-n] [-m] [-s] [-d] [-r] [-S] [-H] [-V]
               [-L] [-u] [--chrome] [--opera] [--edge]
 
 Tesla Owner API CLI
