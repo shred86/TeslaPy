@@ -435,7 +435,9 @@ optional arguments:
   -e EMAIL              login email
   -f FILTER             filter on id, vin, etc.
   -a API [KEYVALUE ...]
-                        API call endpoint name
+                        API call endpoint name for vehicles
+  -z API [KEYVALUE ...]               
+                        API call endpoint name for energy sites
   -k KEYVALUE           API parameter (key=value)
   -c COMMAND            product command endpoint
   -t TIMEOUT            connect/read timeout

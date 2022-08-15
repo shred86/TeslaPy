@@ -96,6 +96,33 @@ def main():
                     print(product.get_site_config())
                 if args.site_summary:
                     print(product.get_site_summary())
+
+            # Call provided API endpoint for battery or energy sites
+            if args.api_energy:
+                if isinstance(product, Vehicle):
+                    continue
+                data = {}
+                for key, value in args.keyvalue or []:
+                    try:
+                        data[key] = ast.literal_eval(value)
+                    except (SyntaxError, ValueError):
+                        data[key] = value
+                if args.api_energy:
+                    for commandargs in args.api_energy:
+                        command = commandargs.pop(0)
+                        command_data = {}
+                        for keyvalue in commandargs or []:
+                            key, value = keyvalue.split('=', 1)
+                            try:
+                                command_data[key] = ast.literal_eval(value)
+                            except (SyntaxError, ValueError):
+                                command_data[key] = value
+                        if not command_data:
+                            command_data = data
+                        print(product.api(command, **command_data))
+                else:
+                    print(product.command(args.command, **data))
+
             if args.api or args.command:
                 data = {}
                 for key, value in args.keyvalue or []:
@@ -131,7 +158,9 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Tesla Owner API CLI')
     parser.add_argument('-e', dest='email', help='login email', required=True)
     parser.add_argument('-f', dest='filter', help='filter on id, vin, etc.')
-    parser.add_argument('-a', dest='api', help='API call endpoint name',
+    parser.add_argument('-a', dest='api', help='API call endpoint name for vehicles',
+                        metavar=('API', 'KEYVALUE'), action='append', nargs='+')
+    parser.add_argument('-z', dest='api_energy', help='API call endpoint name for energy sites',
                         metavar=('API', 'KEYVALUE'), action='append', nargs='+')
     parser.add_argument('-k', dest='keyvalue', help='API parameter (key=value)',
                         action='append', type=lambda kv: kv.split('=', 1))
