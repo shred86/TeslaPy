@@ -84,8 +84,11 @@ def main():
                     print(product.get_service_scheduling_data())
                 if args.history:
                     print(product.get_charge_history())
-            elif isinstance(product, Battery) and args.battery:
-                print(product.get_battery_data())
+            elif isinstance(product, Battery):
+                if args.battery:
+                    print(product.get_battery_data())
+                if args.battery_summary:
+                    print(product.get_battery_summary())
             elif isinstance(product, SolarPanel):
                 if args.site:
                     print(product.get_site_data())
@@ -159,6 +162,8 @@ if __name__ == "__main__":
     parser.add_argument('--site_config', action='store_true',
                         help='get site config data')
     parser.add_argument('--site_summary', action='store_true',
+                        help='get site summary data')
+    parser.add_argument('--battery_summary', action='store_true',
                         help='get site summary data')
     parser.add_argument('-d', '--debug', action='store_true',
                         help='set logging level to debug')

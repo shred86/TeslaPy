@@ -808,6 +808,11 @@ class Battery(Product):
         self.update(self.api('BATTERY_DATA')['response'])
         return self
 
+    def get_battery_summary(self):
+        """ Retrieve battery summary """
+        self.update(self.api('BATTERY_SUMMARY')['response'])
+        return self
+
     def set_operation(self, mode):
         """ Set battery operation to self_consumption, backup or autonomous """
         return self.command('BATTERY_OPERATION_MODE', default_real_mode=mode)
@@ -940,15 +945,15 @@ class SolarPanel(Product):
 
     def get_site_data(self):
         """ Retrieve current site generation data """
-        self.api('SITE_DATA')['response']
+        self.update(self.api('SITE_DATA')['response'])
         return self
 
     def get_site_config(self):
         """ Retrieve site config data """
-        self.api('SITE_CONFIG')['response']
+        self.update(self.api('SITE_CONFIG')['response'])
         return self
 
     def get_site_summary(self):
         """ Retrieve site summary data """
-        self.api('SITE_SUMMARY')['response']
+        self.update(self.api('SITE_SUMMARY')['response'])
         return self
