@@ -945,15 +945,18 @@ class SolarPanel(Product):
 
     def get_site_data(self):
         """ Retrieve current site generation data """
-        self.update(self.api('SITE_DATA')['response'])
-        return self
+        return self.api('SITE_DATA')['response']
+        # self.update(self.api('SITE_DATA')['response'])
+        # return self
 
     def get_site_config(self):
         """ Retrieve site config data """
-        self.update(self.api('SITE_CONFIG')['response'])
-        return self
+        return self.api('SITE_CONFIG')['response']
+        # self.update(self.api('SITE_CONFIG')['response'])
+        # return self
 
     def get_site_summary(self):
         """ Retrieve site summary data """
-        self.update(self.api('SITE_SUMMARY')['response'])
-        return self
+        return self.api('SITE_SUMMARY')['response']
+        # self.update(self.api('SITE_SUMMARY')['response'])
+        # return self
